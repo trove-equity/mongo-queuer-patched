@@ -1,7 +1,1 @@
-module.exports = {
-  Plugin: require('./plugin'),
-  Worker: require('./worker'),
-  Watchdog: require('./watchdog')
-};
-
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmNvZmZlZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxNQUFNLENBQUMsT0FBUCxHQUNFO0VBQUEsTUFBQSxFQUFVLE9BQUEsQ0FBUSxVQUFSLENBQVY7RUFDQSxNQUFBLEVBQVUsT0FBQSxDQUFRLFVBQVIsQ0FEVjtFQUVBLFFBQUEsRUFBVSxPQUFBLENBQVEsWUFBUixDQUZWIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlUm9vdCI6Ii9zb3VyY2UvIiwic291cmNlc0NvbnRlbnQiOlsibW9kdWxlLmV4cG9ydHMgPVxuICBQbHVnaW46ICAgcmVxdWlyZSAnLi9wbHVnaW4nXG4gIFdvcmtlcjogICByZXF1aXJlICcuL3dvcmtlcidcbiAgV2F0Y2hkb2c6IHJlcXVpcmUgJy4vd2F0Y2hkb2cnXG4iXX0=
+module.exports = require('./lib')
