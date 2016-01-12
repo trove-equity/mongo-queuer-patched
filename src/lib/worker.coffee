@@ -107,7 +107,6 @@ class Worker extends EventEmitter
         @pollNow()
     , (err) =>
       @notifyError err
-      @_quit()
 
 
 module.exports = Worker
