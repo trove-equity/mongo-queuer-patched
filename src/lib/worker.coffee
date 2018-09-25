@@ -108,5 +108,7 @@ class Worker extends EventEmitter
     , (err) =>
       @notifyError err
 
+    @emit 'ready'
+
 
 module.exports = Worker

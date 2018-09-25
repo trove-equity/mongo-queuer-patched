@@ -54,5 +54,7 @@ class Watchdog extends EventEmitter
     , (err) =>
       @notifyError err
 
+    @emit 'ready'
+
 
 module.exports = Watchdog
