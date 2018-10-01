@@ -1,9 +1,8 @@
 async = require('async')
 
 EventEmitter = require('events').EventEmitter
-
 QueuerErrors = require('./errors')
-
+{ HEALTHY_STATUS, UNHEALTHY_STATUS } = require('./healthcheck_statuses')
 
 class Watchdog extends EventEmitter
   constructor: (Model, { @pollInterval = 500 } = {}) ->
@@ -41,10 +40,10 @@ class Watchdog extends EventEmitter
   run: () ->
     async.forever (done) =>
       if @isShuttingDown
-        @notifyHealthStatusChange 'unhealthy'
+        @notifyHealthStatusChange UNHEALTHY_STATUS
         return done new QueuerErrors.ShutdownError()
 
-      @notifyHealthStatusChange 'healthy'
+      @notifyHealthStatusChange HEALTHY_STATUS
 
       @Model._failTimedOutOne (err, object) =>
         if err?

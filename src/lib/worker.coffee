@@ -1,9 +1,8 @@
 async = require('async')
 
 EventEmitter = require('events').EventEmitter
-
 QueuerErrors = require('./errors')
-
+{ HEALTHY_STATUS, UNHEALTHY_STATUS } = require('./healthcheck_statuses')
 
 # @TODO: Wrap in domains
 class Worker extends EventEmitter
@@ -68,13 +67,13 @@ class Worker extends EventEmitter
     @pollTimer = null
 
     unless @_pollDelayedCallback?
-      @notifyHealthStatusChange 'unhealthy'
+      @notifyHealthStatusChange UNHEALTHY_STATUS
       throw new Error "@_pollDelayedCallback not set, critical error, should never have happened!"
 
     if err?
-      @notifyHealthStatusChange 'unhealthy'
+      @notifyHealthStatusChange UNHEALTHY_STATUS
     else
-      @notifyHealthStatusChange 'healthy'
+      @notifyHealthStatusChange HEALTHY_STATUS
 
     fn = @_pollDelayedCallback
     @setPollingCallback null
