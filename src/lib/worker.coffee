@@ -67,13 +67,13 @@ class Worker extends EventEmitter
     @pollTimer = null
 
     unless @_pollDelayedCallback?
-      @notifyHealthStatusChange UNHEALTHY_STATUS
+      @notifyHealthStatus UNHEALTHY_STATUS
       throw new Error "@_pollDelayedCallback not set, critical error, should never have happened!"
 
     if err?
-      @notifyHealthStatusChange UNHEALTHY_STATUS
+      @notifyHealthStatus UNHEALTHY_STATUS
     else
-      @notifyHealthStatusChange HEALTHY_STATUS
+      @notifyHealthStatus HEALTHY_STATUS
 
     fn = @_pollDelayedCallback
     @setPollingCallback null
@@ -115,9 +115,8 @@ class Worker extends EventEmitter
     , (err) =>
       @notifyError err
 
-  notifyHealthStatusChange: (status) ->
-    if @healthStatus isnt status
-      @healthStatus = status
-      @emit status
+  notifyHealthStatus: (status) ->
+    @healthStatus = status
+    @emit status
 
 module.exports = Worker
