@@ -40,10 +40,10 @@ class Watchdog extends EventEmitter
   run: () ->
     async.forever (done) =>
       if @isShuttingDown
-        @notifyHealthStatusChange UNHEALTHY_STATUS
+        @notifyHealthStatus UNHEALTHY_STATUS
         return done new QueuerErrors.ShutdownError()
 
-      @notifyHealthStatusChange HEALTHY_STATUS
+      @notifyHealthStatus HEALTHY_STATUS
 
       @Model._failTimedOutOne (err, object) =>
         if err?
@@ -57,7 +57,7 @@ class Watchdog extends EventEmitter
     , (err) =>
       @notifyError err
 
-  notifyHealthStatusChange: (status) ->
+  notifyHealthStatus: (status) ->
     @healthStatus = status
     @emit status
 
