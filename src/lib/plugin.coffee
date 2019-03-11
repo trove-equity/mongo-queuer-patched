@@ -55,6 +55,12 @@ PluginFn = (schema, { taskFn, timeout = null } = {}) ->
       default:  []
       type:     [ LogSchema ]
 
+  # Indexes
+  schema.index {
+    status: 1
+    timeout_at: 1
+  }
+
   # Helpers
   schema.statics._updateStatusKwargs = (status, substatus, { updateKwargs={}, isInsert=false } = {}) ->
     commonKwargs = _.assign {
